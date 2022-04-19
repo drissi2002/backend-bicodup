@@ -1,12 +1,15 @@
 package com.exam.backend.service.impl;
 
+import com.exam.backend.helper.UserFoundException;
 import com.exam.backend.model.User;
 import com.exam.backend.model.UserRole;
 import com.exam.backend.repo.RoleRepository;
 import com.exam.backend.repo.UserRepository;
 import com.exam.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -23,16 +26,12 @@ public class UserServiceIpml implements UserService {
 
     // Creating user
     @Override
-    public User createUser(User user, Set<UserRole> userRoles) {
+    public User createUser(User user, Set<UserRole> userRoles) throws UserFoundException {
 
         User local = this.userRepository.findByUsername(user.getUsername());
         if(local!=null){
             System.out.println("User is already there !");
-            try {
-                throw new Exception("User already present !");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            throw new UserFoundException();
         }
         else{
             // User created

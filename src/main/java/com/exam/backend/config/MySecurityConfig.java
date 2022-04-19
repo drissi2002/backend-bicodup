@@ -31,8 +31,8 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationFilter jwtAthenticationFilter;
 
 
-    @Autowired()
-    private UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
 
     @Override
@@ -41,15 +41,21 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    //@Bean
+    //public PasswordEncoder passwordEncoder(){
+      //  return NoOpPasswordEncoder.getInstance();
+    //}
+
     @Bean
-    public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
+     public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.userDetailsService(this.userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(this.userDetailsServiceImpl).passwordEncoder(passwordEncoder());
     }
 
     @Override

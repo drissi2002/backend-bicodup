@@ -1,5 +1,6 @@
 package com.exam.backend;
 
+import com.exam.backend.helper.UserFoundException;
 import com.exam.backend.model.Role;
 import com.exam.backend.model.User;
 import com.exam.backend.model.UserRole;

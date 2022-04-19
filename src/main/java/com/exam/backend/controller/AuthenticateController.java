@@ -4,6 +4,7 @@ import com.exam.backend.config.JwtUtils;
 import com.exam.backend.helper.UserNotFoundException;
 import com.exam.backend.model.JwtRequest;
 import com.exam.backend.model.JwtResponse;
+import com.exam.backend.model.User;
 import com.exam.backend.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,20 +15,21 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
+@CrossOrigin("*")
 public class AuthenticateController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserDetailsService userDetailsService;
-    //    private UserDetailsServiceImpl userDetailsService;
-
+    //private UserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
+    @Autowired
     private JwtUtils jwtUtils ;
 
     //genrate token
@@ -62,4 +64,11 @@ public class AuthenticateController {
 
         }
     }
+
+    // return the details about current user
+    @GetMapping("/current-user")
+    public User getCurrent(Principal principal){
+        return ((User)this.userDetailsService.loadUserByUsername(principal.getName()));
+    }
+
 }
