@@ -1,12 +1,14 @@
 package com.exam.backend.controller;
 
 
+import com.exam.backend.model.exam.Category;
 import com.exam.backend.model.exam.Quiz;
 import com.exam.backend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -52,4 +54,24 @@ public class QuizController {
     }
 
 
+    @GetMapping("/category/{cid}")
+    public List<Quiz> getQuizzesOfCategory(@PathVariable("cid") Long cid){
+    	Category category =new Category();
+    	category.setCid(cid);
+    	return this.quizService.getQuizzesOfCategory(category);
+    		
+    }
+    
+    //get Active quiz
+    @GetMapping("/active")
+    public List<Quiz> getActiveQuizzes(){
+    	return this.quizService.getActiveQuizzes();
+    }
+    
+    @GetMapping("/category/active/{cid}")
+    public List<Quiz> getActiveQuizzesOfCategory(@PathVariable("cid")Long cid){
+    	Category category =new Category();
+    	category.setCid(cid);
+    	return this.quizService.getActiveQuizzesOfCategory(category);
+    }
 }

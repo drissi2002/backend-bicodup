@@ -42,5 +42,17 @@ public class Category {
 
         // TODO Auto-generated constructor stub
     }
+	public Long getCid() {
+		return cid;
+	}
+	public void setCid(Long cid) {
+		this.cid = cid;
+	}
+	public Set<Quiz> getQuizzes() {
+		return quizzes;
+	}
+	public void setQuizzes(Set<Quiz> quizzes) {
+		this.quizzes = quizzes;
+	}
 
 }
