@@ -64,4 +64,24 @@ public class QuizController {
     }
 
 
+    @GetMapping("/category/{cid}")
+    public List<Quiz> getQuizzesOfCategory(@PathVariable("cid") Long cid){
+    	Category category =new Category();
+    	category.setCid(cid);
+    	return this.quizService.getQuizzesOfCategory(category);
+    		
+    }
+    
+    //get Active quiz
+    @GetMapping("/active")
+    public List<Quiz> getActiveQuizzes(){
+    	return this.quizService.getActiveQuizzes();
+    }
+    
+    @GetMapping("/category/active/{cid}")
+    public List<Quiz> getActiveQuizzesOfCategory(@PathVariable("cid")Long cid){
+    	Category category =new Category();
+    	category.setCid(cid);
+    	return this.quizService.getActiveQuizzesOfCategory(category);
+    }
 }
