@@ -6,6 +6,7 @@ import com.exam.backend.service.QuestionService;
 import com.exam.backend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -25,6 +26,7 @@ public class QuestionController {
     //add question
     @PostMapping("/")
     public ResponseEntity<Question> add(@RequestBody Question question){
+        System.out.println(question.toString());
         return ResponseEntity.ok(this.questionService.addQuestion(question));
     }
 
@@ -64,5 +66,7 @@ public class QuestionController {
     public void delete(@PathVariable("questId") Long questId){
         this.questionService.deleteQuestion(questId);
     }
+
+
 
 }
