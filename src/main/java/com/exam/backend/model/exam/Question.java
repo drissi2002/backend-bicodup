@@ -5,7 +5,7 @@ import javax.persistence.*;
 public class Question {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO )
     private Long quesId;
     @Column(length = 5000)
     private String content;
@@ -92,7 +92,7 @@ public class Question {
     }
 
     public Question(Long quesId, String content, String image, String option1, String option2, String option3,
-                    String option4, String answer, Quiz quiz) {
+                    String option4, String answer ,Quiz quiz) {
         super();
         this.quesId = quesId;
         this.content = content;
@@ -111,5 +111,18 @@ public class Question {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Question{" +
+                "quesId=" + quesId +
+                ", content='" + content + '\'' +
+                ", image='" + image + '\'' +
+                ", option1='" + option1 + '\'' +
+                ", option2='" + option2 + '\'' +
+                ", option3='" + option3 + '\'' +
+                ", option4='" + option4 + '\'' +
+                ", answer='" + answer + '\'' +
+                ", quiz=" + quiz +
+                '}';
+    }
 }

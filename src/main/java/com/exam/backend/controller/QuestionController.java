@@ -6,23 +6,27 @@ import com.exam.backend.service.QuestionService;
 import com.exam.backend.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
 @RestController
 @RequestMapping("/question")
+@CrossOrigin("*")
+
 public class QuestionController {
 
     @Autowired
     private QuestionService questionService;
 
-    @Autowired
-    private QuizService quizService;
+    //@Autowired
+    //private QuizService quizService;
 
     //add question
     @PostMapping("/")
     public ResponseEntity<Question> add(@RequestBody Question question){
+        System.out.println(question.toString());
         return ResponseEntity.ok(this.questionService.addQuestion(question));
     }
 
@@ -35,20 +39,20 @@ public class QuestionController {
     // get all question of any qid
     @GetMapping("/quiz/{qid}")
     public ResponseEntity<?> getQuestionsOfQuiz(@PathVariable("qid") Long qid){
-        // Quiz quiz = new Quiz();
-        // quiz.setqId(qid);
-        // Set<Question> questionsOfQuiz = this.questionService.getQuestionsOfQuiz(quiz);
-        //return ResponseEntity.ok(questionsOfQuiz);
+        Quiz quiz = new Quiz();
+        quiz.setqId(qid);
+        Set<Question> questionsOfQuiz = this.questionService.getQuestionsOfQuiz(quiz);
+        return ResponseEntity.ok(questionsOfQuiz);
 
-        Optional<Quiz> quiz = this.quizService.getQuiz(qid);
-        Set<Question> questions = quiz.get().getQuestions();
-        List list = new ArrayList(questions);
-        if(list.size() >Integer.parseInt(quiz.get().getNumberOfQuestions())){
+        //Optional<Quiz> quiz = this.quizService.getQuiz(qid);
+        //Set<Question> questions = quiz.get().getQuestions();
+        //List list = new ArrayList(questions);
+        //if(list.size() >Integer.parseInt(quiz.get().getNumberOfQuestions())){
 
-            list = list.subList(0,Integer.parseInt(quiz.get().getNumberOfQuestions()+1));
-        }
-        Collections.shuffle(list);
-        return ResponseEntity.ok(list);
+          //  list = list.subList(0,Integer.parseInt(quiz.get().getNumberOfQuestions()+1));
+        //}
+        //Collections.shuffle(list);
+        //return ResponseEntity.ok(list);
     }
 
     //get single question
@@ -62,5 +66,7 @@ public class QuestionController {
     public void delete(@PathVariable("questId") Long questId){
         this.questionService.deleteQuestion(questId);
     }
+
+
 
 }

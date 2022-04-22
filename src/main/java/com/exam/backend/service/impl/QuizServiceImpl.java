@@ -46,6 +46,11 @@ public class QuizServiceImpl implements QuizService {
        this.quizRepository.delete(quiz);
     }
 
+    @Override
+    public List<Quiz> getQuizzesOfCategory(Category category) {
+        return this.quizRepository.findBycategory(category);
+    }
+=======
 	@Override
 	public List<Quiz> getQuizzesOfCategory(Category category) {
 		return this.quizRepository.findByCategory(category);
@@ -62,9 +67,6 @@ public class QuizServiceImpl implements QuizService {
 	public List<Quiz> getActiveQuizzesOfCategory(Category category) {
 		// TODO Auto-generated method stub
 		return this.quizRepository.findByCategoryAndActive(category, true);
+	
+
 	}
-
-	
-
-	
-}
