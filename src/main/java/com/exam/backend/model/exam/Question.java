@@ -16,7 +16,7 @@ public class Question {
     private String option4;
     private String answer;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER )
     private Quiz quiz;
 
     public Long getQuesId() {
@@ -92,7 +92,7 @@ public class Question {
     }
 
     public Question(Long quesId, String content, String image, String option1, String option2, String option3,
-                    String option4, String answer, Quiz quiz) {
+                    String option4, String answer) {
         super();
         this.quesId = quesId;
         this.content = content;
@@ -102,7 +102,6 @@ public class Question {
         this.option3 = option3;
         this.option4 = option4;
         this.answer = answer;
-        this.quiz = quiz;
     }
 
     public Question() {
