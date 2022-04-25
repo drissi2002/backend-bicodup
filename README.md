@@ -14,5 +14,6 @@ acquired during our training and develop them..
 
 ### copyright
 <i>All rights are reserved for : Drissi houcem eddine - Bouraoui manel - Tayari eya </i>
-ThinkTounsi © 2021 - 2022
+<br>
+<i>ThinkTounsi © 2021 - 2022</i>
 
