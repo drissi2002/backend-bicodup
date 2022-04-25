@@ -27,6 +27,7 @@ public class UserServiceIpml implements UserService {
     // Creating user
     @Override
     public User createUser(User user, Set<UserRole> userRoles) throws UserFoundException {
+        //public User createUser(User user, Set<UserRole> userRoles) {
 
         User local = this.userRepository.findByUsername(user.getUsername());
         if(local!=null){

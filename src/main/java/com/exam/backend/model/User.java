@@ -5,7 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name ="users")
-public class User implements UserDetails {
+public  class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
@@ -144,8 +143,6 @@ public class User implements UserDetails {
         return true;
     }
 
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
@@ -156,5 +153,7 @@ public class User implements UserDetails {
 
         return setAuth;
     }
+
+
 
 }

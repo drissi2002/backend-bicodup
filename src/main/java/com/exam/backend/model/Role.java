@@ -18,6 +18,12 @@ public class Role {
 
     public Role(){}
 
+    public Role(Long roleId, String roleName, Set<UserRole> userRoles) {
+        this.roleId = roleId;
+        this.roleName = roleName;
+        this.userRoles = userRoles;
+    }
+
     public Long getRoleId() {
         return roleId;
     }

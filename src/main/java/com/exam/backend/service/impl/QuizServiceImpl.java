@@ -41,32 +41,23 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public void deleteQuiz(Long quizId) {
-       Quiz quiz = new Quiz();
-       quiz.setqId(quizId);
-       this.quizRepository.delete(quiz);
+        Quiz quiz = new Quiz();
+        quiz.setqId(quizId);
+        this.quizRepository.delete(quiz);
     }
-
     @Override
     public List<Quiz> getQuizzesOfCategory(Category category) {
-        return this.quizRepository.findBycategory(category);
+        return this.quizRepository.findByCategory(category);
+
     }
-=======
-	@Override
-	public List<Quiz> getQuizzesOfCategory(Category category) {
-		return this.quizRepository.findByCategory(category);
-		
-	}
-
-	@Override
-	public List<Quiz> getActiveQuizzes() {
-		// TODO Auto-generated method stub
-		return this.quizRepository.findByActive(true);
-	}
-
-	@Override
-	public List<Quiz> getActiveQuizzesOfCategory(Category category) {
-		// TODO Auto-generated method stub
-		return this.quizRepository.findByCategoryAndActive(category, true);
-	
-
-	}
+    @Override
+    public List<Quiz> getActiveQuizzes() {
+        // TODO Auto-generated method stub
+        return this.quizRepository.findByActive(true);
+    }
+    @Override
+    public List<Quiz> getActiveQuizzesOfCategory(Category category) {
+        // TODO Auto-generated method stub
+        return this.quizRepository.findByCategoryAndActive(category, true);
+    }
+}
