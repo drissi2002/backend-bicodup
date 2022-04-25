@@ -15,6 +15,12 @@ public class UserRole {
 
     public UserRole() {}
 
+    public UserRole(Long userRoleId, User user, Role role) {
+        this.userRoleId = userRoleId;
+        this.user = user;
+        this.role = role;
+    }
+
     public Long getUserRoleId() {
         return userRoleId;
     }

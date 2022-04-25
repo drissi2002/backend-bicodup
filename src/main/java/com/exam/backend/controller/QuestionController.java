@@ -20,8 +20,8 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    //@Autowired
-    //private QuizService quizService;
+    @Autowired
+    private QuizService quizService;
 
     //add question
     @PostMapping("/")
@@ -65,6 +65,37 @@ public class QuestionController {
     @DeleteMapping("/{questId}")
     public void delete(@PathVariable("questId") Long questId){
         this.questionService.deleteQuestion(questId);
+    }
+
+    //eval quiz
+    @PostMapping("/eval-quiz")
+    public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions){
+        double marksGot =0;
+        int correctAnswers=0;
+        int attempted=0;
+        System.out.print(questions);
+        for(Question q:questions)
+        {
+            //single question
+            Question question=this.questionService.get(q.getQuesId());
+            if(question.getAnswer().equals(q.getGivenAnswer())) {
+                //correct
+                correctAnswers++;
+                double marksSingle =Double.parseDouble(questions.get(0).getQuiz().getMaxMarks())/questions.size();
+
+                marksGot += marksSingle;
+
+
+            }
+            if(!q.getGivenAnswer().trim().equals("")||q.getGivenAnswer()!=null) {
+                attempted++;
+
+            }
+            System.out.print(q.getAnswer());
+        };
+        Map<String,Object> map=Map.of("marksGot",marksGot,"correctAnswers",correctAnswers,"attempted",attempted);
+        return ResponseEntity.ok(map);
+
     }
 
 

@@ -1,4 +1,5 @@
 package com.exam.backend.model.exam;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 @Entity
@@ -14,8 +15,19 @@ public class Question {
     private String option2;
     private String option3;
     private String option4;
+    @JsonIgnore
     private String answer;
 
+    public String getGivenAnswer() {
+        return givenAnswer;
+    }
+
+    public void setGivenAnswer(String givenAnswer) {
+        this.givenAnswer = givenAnswer;
+    }
+
+    @Transient
+    private String givenAnswer;
     @ManyToOne(fetch = FetchType.EAGER)
     private Quiz quiz;
 
