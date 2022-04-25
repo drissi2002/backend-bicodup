@@ -12,7 +12,10 @@ acquired during our training and develop them..
   <img src="https://i.imgur.com/e4qWTiB.png"  alt="accessibility text">
 </p>
 
-### copyright
+
+# ---------------------------------------------------
+
+### Copyright
 <i>All rights are reserved for : <b >Drissi houcem eddine - Bouraoui manel - Tayari eya </b> </i>
 <br>
 <i>ThinkTounsi © 2021 - 2022</i>
