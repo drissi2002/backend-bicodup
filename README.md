@@ -9,7 +9,7 @@ acquired during our training and develop them..
 ## Preview
 #### the Backend part - Spring boot
 <p align="center">
-  <img src="https://i.imgur.com/e4qWTiB.png"  alt="accessibility text">
+  <img src="https://i.imgur.com/gxAIZ7b.png"  alt="accessibility text">
 </p>
 
 
